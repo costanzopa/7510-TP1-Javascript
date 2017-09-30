@@ -23,3 +23,5 @@ Array.prototype.equals = function (array) {
 };
 
 Object.defineProperty(Array.prototype, "equals", {enumerable: false});
+
+module.exports = Array;

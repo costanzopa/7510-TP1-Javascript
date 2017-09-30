@@ -1,12 +1,14 @@
 var expect = require("chai").expect;
+var assert = require('assert');
 
-var Fact = require('../../../src/engine/schema/Fact');
+var Fact = require('../../../src/engine/schema/Fact.js');
+require('../../../src/engine/core/Array.js');
 
 describe("Fact Test Suite", function () {
 
     var fact = null;
 
-    beforeEach(function () {
+    beforeEach(function() {
         fact = new Fact("add(zero, zero, zero).");
     });
 
@@ -18,6 +20,17 @@ describe("Fact Test Suite", function () {
 
         it("Obtain values of a Fact.", function () {
             expect(fact.getName()).to.equal("add");
+        });
+
+        it("Obtain arguments of a Fact.", function () {
+            var arguments = fact.getArguments();
+            console.log(arguments);
+            assert(arguments.equals(['zero','zero','zero']) === true);
+        });
+
+        it("Check if facts are equals.", function () {
+            factDuplicate = new Fact("add(zero, zero, zero).");
+            assert(factDuplicate.equals(fact) === true);
         });
     });
 });

@@ -1,8 +1,9 @@
-var Element = function () {
-    this.class = "engine.schema.Element";
-    this.toString = function () {
-        return this.class;
-    }
+var Element = function (){
+    this.classname = "engine.schema.Element";
+};
+
+Element.prototype.toString = function () {
+    return this.classname;
 };
 
 module.exports = Element;
