@@ -25,7 +25,7 @@ describe("Fact Test Suite", function () {
         it("Obtain arguments of a Fact.", function () {
             var arguments = fact.getArguments();
             console.log(arguments);
-            assert(arguments.equals(['zero','zero','zero']) === true);
+            assert(arguments.equals(["zero","zero","zero"]) === true);
         });
 
         it("Check if facts are equals.", function () {
