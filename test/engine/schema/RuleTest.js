@@ -14,6 +14,15 @@ describe("Rule Test Suite", function () {
         rule = new Rule("hijo(X, Y) :- varon(X), padre(Y, X).");
     });
 
+    var checkAreEquals = function (array1, array2) {
+        for(var i=0 ; i< array1.length; i++) {
+            if (!array1[i].equals(array2[i])) {
+                return false;
+            }
+        }
+        return true;
+    };
+
     describe("Check Rule behavior.", function () {
 
         it("Create Rule.", function () {
@@ -37,6 +46,17 @@ describe("Rule Test Suite", function () {
             var result2 =facts[1].equals(padre);
             assert(result === true);
             assert(result2 === true);
+        });
+
+        it("Check if two rules are equal true.", function () {
+            var newRule = new Rule("hijo(X, Y) :- varon(X), padre(Y, X).");
+            assert(rule.equals(newRule) === true);
+        });
+
+        it("Check if two rules are equal true.", function () {
+            var newFact = new Fact("hijo(luis, arturo).");
+            var vectorFacts = [new Fact("varon(luis)."), new Fact("padre(arturo, luis).")];
+            assert( checkAreEquals(vectorFacts, rule.completeArguments(newFact)) === true);
         });
 
     });

@@ -9,9 +9,15 @@ var Interpreter = function () {
     };
 
     this.checkQuery = function (query) {
-        return true;
+        var result = false;
+        if ((valid === true) && (database.validateQuery(query) === true)) {
+            if ((database.checkFacts(query) === true) || (database.checkRules(query) === true)) {
+                result = true;
+            }
+        }
+        return result;
     }
 
-}
+};
 
 module.exports = Interpreter;

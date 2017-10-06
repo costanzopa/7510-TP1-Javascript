@@ -27,12 +27,43 @@ var Rule = function (line) {
     };
 
 
-
     this.getFacts = function () {
       createRule();
       return facts;
     };
+    
+    this.completeArguments = function (queryFact) {
+        var facts = this.getFacts();
+        var replaceFacts = [];
+        for (var i = 0; i < facts.length; i++) {
+            var name = facts[i].getName();
+            var replaceFact = null;
+            var arguments = facts[i].getArguments();
+            var replaceArguments = [];
+            for (var j = 0; j < arguments.length; j++) {
+                var value = foundMatch(arguments[j],this.getArguments(),queryFact.getArguments());
+                replaceArguments.push(value);
+            }
+            replaceFact = new Fact(name + "(" +replaceArguments.join(", ") +").");
+            replaceFacts.push(replaceFact);
+        }
+       return replaceFacts;
+    };
 
+
+    var foundMatch = function (element, keys, values) {
+        var value = "";
+        for(var i=0; i < keys.length; i++) {
+            if (element === keys[i]) {
+                value = values[i];
+            }
+        }
+        return value;
+    };
+
+    this.equals = function (rule) {
+        return (this.getName() === rule.getName());
+    }
 };
 
 Rule.prototype = Object.create(Element.prototype);

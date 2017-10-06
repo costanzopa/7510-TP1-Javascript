@@ -2,7 +2,7 @@ var Rule = require('../../schema/Rule.js');
 var Fact = require('../../schema/Fact.js');
 var Element = require('../../schema/Element.js');
 
-var factPattern = /^([^\(\)]*)\(([^\(\)]*)\)\.$/;
+var factPattern = /^([^\(\)]*)\(([^\(\)]*)\)\.?$/;
 
 var Factory = function() {
     this.createElement = function (line) {
@@ -15,7 +15,7 @@ var Factory = function() {
             element = new Element();
         }
         return element;
-    }
+    };
 
 
     this.isFact = function (line) {
