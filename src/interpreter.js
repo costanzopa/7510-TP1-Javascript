@@ -1,10 +1,14 @@
+var Database = require('./engine/storage/Database.js');
+
 var Interpreter = function () {
+    var database = null;
+    var valid = false;
+    this.parseDB = function (db) {
+        database = new Database();
+        valid = database.validate(db);
+    };
 
-    this.parseDB = function (params, paramss, paramsss) {
-
-    }
-
-    this.checkQuery = function (params) {
+    this.checkQuery = function (query) {
         return true;
     }
 

@@ -31,7 +31,8 @@ var Rule = function (line) {
     this.getFacts = function () {
       createRule();
       return facts;
-    }
+    };
+
 };
 
 Rule.prototype = Object.create(Element.prototype);

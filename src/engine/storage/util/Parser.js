@@ -7,7 +7,7 @@ var Parser = function () {
        if (db !== null) {
            var factory = new Factory();
            for (var i = 0; i < db.length; i++) {
-               database.add(factory.createElement(line));
+               database.push(factory.createElement(db[i]));
            }
        }
        return database;
