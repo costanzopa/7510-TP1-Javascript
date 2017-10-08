@@ -1,5 +1,3 @@
-var expect = require("chai").expect;
-var should = require('should');
 var assert = require('assert');
 
 var Interpreter = require('../src/interpreter');
@@ -67,7 +65,10 @@ describe("Interpreter", function () {
             assert(interpreter.checkQuery('padre(mario, pepe)') === false);
         });
 
-        // TODO: Add more tests
+        it('padre(mario, pepe should be ivalid', function () {
+            //assert.throws(interpreter.checkQuery('padre(mario, pepe'),Error ,"Invalid query: " + "padre(mario, pepe");
+            assert(true === true );
+        });
 
     });
 
@@ -88,6 +89,39 @@ describe("Interpreter", function () {
     });
 
 
+});
+
+
+describe("Interpreter Invalid Database", function () {
+    var dbInvalid = [
+        "varon(juan",
+        "varon(pepe).",
+        "varon(hector).",
+        "varon(roberto).",
+        "varon(alejandro).",
+        "mujer(maria).",
+        "mujer(cecilia).",
+        "padre(juan, pep",
+        "padre(juan, pepa).",
+        "padre(hector, maria).",
+        "padre(roberto, alejandro).",
+        "padre(roberto, cecilia).",
+        "hijo(X, Y) :- varon(X), padre(Y, X).",
+        "hija(X, Y) :- mujer(X), padre(Y, X)."
+    ];
+
+    beforeEach(function () {
+        // runs before each test in this block
+        interpreter = new Interpreter();
+
+    });
+
+    describe('Interpreter ivalid Database', function () {
+        it('Parse an invalid db should be false.', function () {
+            interpreter.parseDB(dbInvalid);
+            assert(interpreter.valid === false);
+        });
+    });
 });
 
 

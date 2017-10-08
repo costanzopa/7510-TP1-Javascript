@@ -12,7 +12,7 @@ var Factory = function() {
         } else if (this.isRule(line) === true) {
             element = new Rule(line);
         } else {
-            element = new Element();
+            element = new Element(line);
         }
         return element;
     };
