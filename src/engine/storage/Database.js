@@ -95,6 +95,14 @@ var Database = function () {
         }
         return false;
     };
+
+    this.showDatabaseElementError = function () {
+        for (var i = 0; i < database.length; i++) {
+            if (isElement(database[i])) {
+                console.log("Error in element: " + database[i].line);
+            }
+        }
+    }
 };
 
 module.exports = Database;
